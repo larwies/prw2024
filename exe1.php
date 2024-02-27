@@ -1,58 +1,73 @@
 <?php
-    $nome = $_GET['nome'];
-    $idade = $_GET['idade'];
-    $salario = $_GET['salario'];
-    
-    if ($idade <= 65)
+ 
+ $nome = $_GET['nome'];
+ $idade = $_GET['idade'];
+ $salario = $_GET['salario'];
+
+
+ if($salario <= 1412.00)
     {
-        if ($salario <= 1302.00)
-        {
-            $salINSS = $salario - (($salario/100) * 7.5);
-        }
-
-        if ($salario <= 2571.29)
-        {
-            $salINSS = $salario - (($salario/100) * 9);
-        }    
-
-        if ($salario <= 3856.94)
-        {
-            $salINSS = $salario - (($salario/100) * 12);
-        }
-        
-        else
-        {
-            $salario - (($salario/100) * 14);
-        }
-
+        $inss = $salario * 0.075;
     }
-    
-        if ($salario <= 1903.98)
-        {
-            $salIRRF = $salario;
-        }
+ else if($salario < 2666.68)
+    {
+        $inss = $salario * 0.09;
+    }
+ else if($salario < 4000.03)
+    {
+        $inss = $salario * 0.12;
+    }
+ else if( $salario > 4000.03 )
+    {
+        $inss = $salario * 0.14;
+    }
 
-        if ($salario <= 2826.65)
-        {
-            $salIRRF = ($salario - 142.80) - (($salario/100) * 7.5);
-        }
 
-        if ($salario <= 3751.05)
-        {
-            $salIRRF = ($salario - 354.80) - (($salario/100) * 15);
-        }
+    $bir= $salario - $inss;
 
-        if ($salario <= 4664.68)
-        {
-            $salIRRF = ($salario - 636.13) - (($salario/100) * 22.5);
-        }
 
-        else
-        {
-            $salIRRF = ($salario - 869.36) - (($salario/100) * 27.5);
-        }
+ if($bir <= 2259.20 && $idade < 65)
+    {
+        $irpf = $bir*0;
+    }
+ else if( $bir <= 2259.20 && $idade >= 65)
+    {
+        $irpf = $salario * 0 - 0;
+    }
 
-         echo "Total a pagar INSS: ".number_format($salINSS,2,".","")." IRPF: ".number_format($salIRRF,2,".","");
-
+ else if($bir <= 2828.65 && $idade < 65)
+    {
+        $irpf = ($bir * 0.075) - 169.44;
+    }
+ else if($bir <= 2828.65 && $idade >= 65)
+    {
+        $irpf = ($bir * 0);
+    }
+ else if($bir <= 3751.05 && $idade < 65)
+    {
+        $irpf = ($bir * 0.15) - 381.44;
+    }
+ else if($bir <= 3751.05 && $idade >= 65)
+    {
+        $irpf = ($bir * 0);
+    }
+    else if($bir <= 4664.68 && $idade < 65)
+    {
+        $irpf = ($bir * 0.225) - 381.44;
+    }
+ else if($bir <= 4664.68 && $idade >= 65)
+    {
+        $irpf = ($bir * 0);
+    }
+    else if($bir > 4664.68  && $idade < 65)
+    {
+        $irpf = ($bir * 0.275) - 896.00;
+    }
+ else if($bir > 4664.68  && $idade >= 65)
+    {
+        $irpf = ($bir * 0);
+    }
+   
+ echo "Valor total do INSS: ".number_format($inss,2,".","")."Valor do total do IRPF: ".number_format($irpf,2,".","");
 
 ?>
