@@ -28,9 +28,9 @@
 
  if($bir <= 2259.20 && $idade < 65)
     {
-        $irpf = $bir*0;
+        $irpf = $bir  *0;
     }
- else if( $bir <= 2259.20 && $idade >= 65)
+ else if($bir <= 2259.20 && $idade >= 65)
     {
         $irpf = $salario * 0 - 0;
     }
@@ -51,7 +51,7 @@
     {
         $irpf = ($bir * 0);
     }
-    else if($bir <= 4664.68 && $idade < 65)
+ else if($bir <= 4664.68 && $idade < 65)
     {
         $irpf = ($bir * 0.225) - 381.44;
     }
@@ -59,7 +59,7 @@
     {
         $irpf = ($bir * 0);
     }
-    else if($bir > 4664.68  && $idade < 65)
+ else if($bir > 4664.68  && $idade < 65)
     {
         $irpf = ($bir * 0.275) - 896.00;
     }
