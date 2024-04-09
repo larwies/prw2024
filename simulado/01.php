@@ -1,32 +1,18 @@
-
-<?
-
-$n = intval(fgets(STDIN));
-
-$sc = 0;
-$bc = 0;
-$ac = 0;
-$ssc = 0;
-$sbc = 0;
-$sac = 0;
-
-for ($i = 0; $i < $n; $i++) {
-    $str = fgets(STDIN);
-    list($s, $b, $a, $s1, $b1, $a1) = array_map('intval', explode(' ', fgets(STDIN)));
-    $sc += $s;
-    $bc += $b;
-    $ac += $a;
-    $ssc += $s1;
-    $sbc += $b1;
-    $sac += $a1;
+$N = intval(readline());
+$jogador = [];
+$tentativa = [0, 0, 0];
+$sucesso = [0, 0, 0];
+while ($N--) {
+    array_push($jogador, readline());
+    list($saque, $bloqueio, $ataque) = explode(" ", readline());
+    $tentativa[0] += $saque;
+    $tentativa[1] += $bloqueio;
+    $tentativa[2] += $ataque;
+    list($saque, $bloqueio, $ataque) = explode(" ", readline());
+    $sucesso[0] += $saque;
+    $sucesso[1] += $bloqueio;
+    $sucesso[2] += $ataque;
 }
-
-$p1 = ($ssc / $sc) * 100;
-$p2 = ($sbc / $bc) * 100;
-$p3 = ($sac / $ac) * 100;
-
-printf("Pontos de Saque: %.2f %%.\n", $p1);
-printf("Pontos de Bloqueio: %.2f %%.\n", $p2);
-printf("Pontos de Ataque: %.2f %%.\n", $p3);
-
-
+echo "Pontos de Saque: " . number_format(($sucesso[0] / $tentativa[0] * 100), 2, ".", "") . " %.\n";
+echo "Pontos de Bloqueio: " . number_format(($sucesso[1] / $tentativa[1] * 100), 2, ".", "") . " %.\n";
+echo "Pontos de Ataque: " . number_format(($sucesso[2] / $tentativa[2] * 100), 2, ".", "") . " %.\n";
